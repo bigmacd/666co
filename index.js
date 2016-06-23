@@ -13,7 +13,7 @@ var qsmessages = [ "Remember that scene from 'Apocolypse Now', yeah...",
 
 var controller = Botkit.slackbot();
 
-controller.hears('',["direct_mention", "mention", "direct_message"],function(bot,message) {
+controller.hears('',["direct_mention", "mention", "direct_message", "ambient"],function(bot,message) {
   // do something to respond to message
   // all of the fields available in a normal Slack message object are available
   // https://api.slack.com/events/message
