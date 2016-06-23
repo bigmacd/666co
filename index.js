@@ -18,7 +18,7 @@ controller.hears('',["direct_mention", "mention", "direct_message"],function(bot
   // all of the fields available in a normal Slack message object are available
   // https://api.slack.com/events/message
   var wasSaid = message['text'];
-
+  var response = '';
   if (/\b[c|C]isco\b/.test(wasSaid)) {
     response = ciscomessages[Math.floor((Math.random() * ciscomessages.length))];
   }
@@ -28,8 +28,7 @@ controller.hears('',["direct_mention", "mention", "direct_message"],function(bot
   else if (/\b[q|Q]uick[s|S]ilver\b/.test(wasSaid)) {
     response = qsmessages[Math.floor((Math.random() * qsmessages.length))];
   }
-
-  reply(message);
+  bot.reply(message, response);
 });
 
 
@@ -44,10 +43,4 @@ bot.startRTM(function(err,bot,payload) {
   }
 });
 
-
-function reply(message, answer) {
-  messageIndex = Math.floor((Math.random() * messages.length));
-  var answer = messages[messageIndex]
-  bot.reply(message, answer);
-}
 
