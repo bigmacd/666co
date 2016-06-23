@@ -1,22 +1,35 @@
 var Botkit = require('botkit');
 var https = require('https');
 
-var messages = [ '',
-                 '',
-                 '',
-                 '',
-                 '',
-                 '',
-                 '',
-                 ''];
+var ciscomessages = [ 'Hate is a strong word, but in this case not strong enough.',
+                      'Reminds me of an ugly hairless chupacabra, dead and rotting.'];
+
+var cbqosmessages = [ "Mike Rowe's 'Dirty Jobs' hasn't seen anything like this.",
+                      'Natural childbirth, of quadruplets, was a breeze in comparison.'];
+
+var qsmessages = [ "Remember that scene from 'Apocolypse Now', yeah...",
+                   'The slime on the dog food factory floor?  Right under that.'];
+
 
 var controller = Botkit.slackbot();
 
-controller.hears(["cisco", "Cisco", "quicksilver", "Quicksilver", "QuickSilver", "cbqos", "CBQOS", "CbQoS", "CbQOS", / ^.{0,}666co.{0,}$/], ["direct_message","direct_mention","mention","ambient"],function(bot,message) {
+controller.hears('',["direct_mention", "mention", "direct_message"],function(bot,message) {
   // do something to respond to message
   // all of the fields available in a normal Slack message object are available
   // https://api.slack.com/events/message
-    reply(message);
+  var wasSaid = message['text'];
+
+  if (/\b[c|C]isco\b/.test(wasSaid)) {
+    response = ciscomessages[Math.floor((Math.random() * ciscomessages.length))];
+  }
+  else if (/\b[c|c][b|B][q|Q][o|O][s|S]\b/.test(wasSaid)) {
+    response = cbqosmessages[Math.floor((Math.random() * cbqosmessages.length))];
+  }
+  else if (/\b[q|Q]uick[s|S]ilver\b/.test(wasSaid)) {
+    response = qsmessages[Math.floor((Math.random() * qsmessages.length))];
+  }
+
+  reply(message);
 });
 
 
