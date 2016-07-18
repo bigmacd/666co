@@ -43,7 +43,8 @@ controller.hears('',["direct_mention", "direct_message"],function(bot,message) {
 });
 
 var bot = controller.spawn({
-  token: require('./config').token
+  //token: require('./config').token
+    token: process.env.token
 });
 
 
