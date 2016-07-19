@@ -24,9 +24,9 @@ controller.hears('',["mention", "ambient"],function(bot,message) {
   // https://api.slack.com/events/message
   var wasSaid = message['text'];
   var response = '';
-  if (/\b[c|C]isco\b/.test(wasSaid)) ||
+  if ((/\b[c|C]isco\b/.test(wasSaid)) ||
      (/\b[c|c][b|B][q|Q][o|O][s|S]\b/.test(wasSaid)) ||
-     (/\b[q|Q]uick[s|S]ilver\b/.test(wasSaid)) {
+     (/\b[q|Q]uick[s|S]ilver\b/.test(wasSaid))) {
         response = ciscomessages[Math.floor((Math.random() * ciscomessages.length))];
         bot.reply(message, response);
   }
