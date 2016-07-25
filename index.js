@@ -18,22 +18,25 @@ var ciscomessages = [ 'Hate is a strong word, but in this case not strong enough
 
 var controller = Botkit.slackbot();
 
-controller.hears('',["mention", "ambient"],function(bot,message) {
+
+controller.hears(['cisco', 'Cisco','cbqos', 'cBqos', 'cBQoS', 'CBQoS', 'CBQOS', 'quicksilver', 'quickSilver', 'QuickSilver' ],["mention", "ambient"],function(bot,message) {
   // do something to respond to message
   // all of the fields available in a normal Slack message object are available
   // https://api.slack.com/events/message
-  var wasSaid = message['text'];
-  var response = '';
-  if ((/\b[c|C]isco\b/.test(wasSaid)) ||
-     (/\b[c|c][b|B][q|Q][o|O][s|S]\b/.test(wasSaid)) ||
-     (/\b[q|Q]uick[s|S]ilver\b/.test(wasSaid))) {
-        response = ciscomessages[Math.floor((Math.random() * ciscomessages.length))];
-        bot.reply(message, response);
-  }
+  var response = ciscomessages[Math.floor((Math.random() * ciscomessages.length))];
+  bot.reply(message, response);
 });
 
+var innocentMessages = [
+    "What!? I didn't say anything!",
+    "**whistles innocently**",
+    "I'm sorry, what?",
+    "Sorry, I was just mumbling."
+]
+
 controller.hears('',["direct_mention", "direct_message"],function(bot,message) {
-    bot.reply(message, "What? I didn't say anything!");
+    var response = innocentMessages[Math.floor((Math.random() * innocentMessages.length))];
+    bot.reply(message, response);
 });
 
 var bot = controller.spawn({
