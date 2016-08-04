@@ -39,6 +39,7 @@ controller.hears('',["direct_mention", "direct_message"],function(bot,message) {
     bot.reply(message, response);
 });
 
+
 var bot = controller.spawn({
   //token: require('./config').token
     token: process.env.token
